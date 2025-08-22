@@ -1,42 +1,50 @@
+# Listado estandarizado de las bibliotecas de Python y sus versiones específicas necesaria en el proyecto
+# Cuando ejecutas 'uv pip install -r requirements.txt', el gestor de paquetes uv (similar a pip) lee este archivo e instala todas las dependencias necesarias.
+
 # ---------------------------------------------
-# 📊 DATA PROCESSING & ANALYSIS
+# 📊 PROCESAMIENTO DE DATOS & ANÁLISIS
+# Contiene las bibliotecas fundamentales para manejar y analizar datos tabulares
 # ---------------------------------------------
-pandas==1.5.3          # Data manipulation and analysis — core for working with tabular data
-numpy==1.24.3          # Numerical operations, arrays, and matrix support (used by almost all ML libraries)
+pandas==1.5.3          # Manipulación y análisis de datos — núcleo para trabajar con datos tabulares
+numpy==1.24.3          # Operaciones numéricas, matrices y soporte de arreglos (utilizado por casi todas las bibliotecas de ML)
 
 # ---------------------------------------------
 # 🧠 MACHINE LEARNING
+# Se definen las herramientas para la creación y el entrenamiento de modelos de ML.
 # ---------------------------------------------
-scikit-learn==1.2.2    # Classic ML models (regression, classification, clustering), preprocessing, model evaluation
-xgboost==1.7.5
+scikit-learn==1.2.2     # Proporciona una gran variedad de algoritmos de aprendizaje automático. Modelos clásicos de ML (regresión, clasificación, agrupamiento), preprocesamiento, evaluación de modelos
+xgboost==1.7.5          # Es una implementación optimizada de árboles de decisión con un algoritmo de gradient boosting.
 # ---------------------------------------------
-# 📈 VISUALIZATION
+# 📈 VISUALIZACIÓN
+# Usan para crear gráficos y visualizaciones para entender mejor los datos y los resultados de los modelos.
 # ---------------------------------------------
-matplotlib==3.7.1      # Base library for plotting graphs, charts, and visualizations
-seaborn==0.12.2        # High-level interface for drawing attractive and informative statistical graphics (built on matplotlib)
+matplotlib==3.7.1      # Biblioteca base para trazar gráficos, diagramas y visualizaciones
+seaborn==0.12.2        # Interfaz de alto nivel para dibujar gráficos estadísticos atractivos e informativos (construido sobre matplotlib)
 
 # ---------------------------------------------
-# 📦 EXPERIMENT TRACKING & MODEL MANAGEMENT
+# 📦 SEGUIMIENTO DE EXPERIMENTOS Y GESTIÓN DE MODELOS
+# Es crucial para el flujo de trabajo de MLOps que me mostraste en imágenes anteriores.
 # ---------------------------------------------
-mlflow==2.3.1          # End-to-end ML lifecycle tracking, including experiment tracking, model packaging, and deployment
+mlflow==2.3.1          # Seguimiento del ciclo de vida de ML de extremo a extremo, incluido el seguimiento de experimentos, empaquetado de modelos y despliegue
 
 # ---------------------------------------------
 # ✅ TESTING
+# Esta biblioteca es para garantizar la calidad y fiabilidad de tu código, datos y modelos.
 # ---------------------------------------------
-pytest==7.3.1          # Python testing framework — great for writing unit tests for ML pipelines, data validation, etc.
+pytest==7.3.1          # Marco de pruebas de Python — excelente para escribir pruebas unitarias para tuberías de ML, validación de datos, etc.
 
 # ---------------------------------------------
-# ⚡ API DEVELOPMENT (FOR MODEL SERVING)
+# ⚡️ DESARROLLO API (PARA SERVICIO DE MODELOS)
+# Estas bibliotecas te permiten exponerlo como un servicio web al que otras aplicaciones pueden acceder para obtener predicciones.
 # ---------------------------------------------
-fastapi==0.95.2        # Lightweight, high-performance web framework for serving ML models via REST APIs
-uvicorn==0.22.0        # ASGI server for running FastAPI apps — lightweight and fast
+fastapi==0.95.2        # Framework web ligero y de alto rendimiento para servir modelos de ML a través de API REST
+uvicorn==0.22.0        # Servidor ASGI para ejecutar aplicaciones FastAPI — ligero y rápido
 #
 # ---------------------------------------------
 #  MISC
+# Varios
 # ---------------------------------------------
-pyyaml==6.0
-joblib==1.3.1
-setuptools==65.5.0
-ipykernel==6.29.5
-
-
+pyyaml==6.0             # Para trabajar con archivos YAML, que se usan comúnmente en la configuración de flujos de trabajo de MLOps.
+joblib==1.3.1           # Una biblioteca para paralelizar tareas y serializar objetos de Python (como modelos de scikit-learn) de manera eficiente.
+setuptools==65.5.0      # Ayuda en el empaquetado y la distribución de proyectos de Python.
+ipykernel==6.29.5       # El núcleo del entorno interactivo de Jupyter Notebooks.
