@@ -9,21 +9,21 @@ services:
 
 # ** 1 **
 # Inicia el servidor de MLflow con tres argumentos clave:
-# --host 0.0.0.0: Hace que el servidor sea accesible desde cualquier dirección IP.
-# --backend-store-uri sqlite:///mlflow.db: Define dónde se almacenarán los metadatos de los experimentos (parámetros, métricas y modelos). Usa una base de datos SQLite llamada mlflow.db.
-# --default-artifact-root /tmp/mlruns: Especifica la ubicación donde se guardarán los "artefactos" de los experimentos (gráficos, modelos guardados, etc.). En este caso, se almacenarán en el directorio /tmp/mlruns dentro del contenedor.
+# --host 0.0.0.0: hace que el servidor sea accesible desde cualquier dirección IP.
+# --backend-store-uri sqlite:///mlflow.db: define dónde se almacenarán los metadatos de los experimentos (parámetros, métricas y modelos). Usa una base de datos SQLite llamada mlflow.db.
+# --default-artifact-root /tmp/mlruns: especifica la ubicación donde se guardarán los "artefactos" de los experimentos (gráficos, modelos guardados, etc.). En este caso, se almacenarán en el directorio '/tmp/mlruns' dentro del contenedor.
 
 # _________________ Lógica de Implementación y Futuro _________________
 # Este despliegue tiene una lógica de implementación clara y marca una base para el futuro:
 
-# Modelo de Datos Básico: Utilizar una base de datos SQLite (mlflow.db) es una solución simple y adecuada para el desarrollo y las pruebas. Sin embargo, en un entorno de producción, esta base de datos no es escalable y se almacena dentro del contenedor.
+# Modelo de Datos Básico: utilizar una base de datos SQLite (mlflow.db) es una solución simple y adecuada para el desarrollo y las pruebas. Sin embargo, en un entorno de producción, esta base de datos no es escalable y se almacena dentro del contenedor.
 
-# Lógica para MLOps: Este servidor de MLflow es el componente central que permite la gestión de experimentos y modelos. Cuando tu flujo de trabajo de GitHub Actions ejecute un script de entrenamiento de un modelo, el script puede enviar los resultados (métricas, parámetros, etc.) a este servidor de MLflow. Esto crea un registro centralizado de todos tus experimentos de ML.
+# Lógica para MLOps: este servidor de MLflow es el componente central que permite la gestión de experimentos y modelos. Cuando tu flujo de trabajo de GitHub Actions ejecute un script de entrenamiento de un modelo, el script puede enviar los resultados (métricas, parámetros, etc.) a este servidor de MLflow. Esto crea un registro centralizado de todos tus experimentos de ML.
 
 # _________________ Escalabilidad y Futuro _________________
 # La configuración actual es para una arquitectura monolítica en una sola máquina. Para una implementación en producción, la lógica y el archivo evolucionarían de la siguiente manera:
 
-# Escalabilidad del Backend Store: La base de datos SQLite no es adecuada para un entorno de producción con múltiples usuarios. En el futuro, la línea --backend-store-uri se modificaría para usar una base de datos escalable como PostgreSQL o MySQL.
+# Escalabilidad del Backend Store: la base de datos SQLite no es adecuada para un entorno de producción con múltiples usuarios. En el futuro, la línea --backend-store-uri se modificaría para usar una base de datos escalable como PostgreSQL o MySQL.
 
 # # Futuro: usando PostgreSQL
 # services:
@@ -33,7 +33,7 @@ services:
 #     image: postgres:latest
 #     ...
 
-# Gestión de Artefactos: La ubicación /tmp/mlruns es temporal. Para garantizar que los artefactos no se pierdan, se usaría un almacén de objetos persistente como Amazon S3, Azure Blob Storage o Google Cloud Storage.
+# Gestión de Artefactos: la ubicación '/tmp/mlruns' es temporal. Para garantizar que los artefactos no se pierdan, se usaría un almacén de objetos persistente como Amazon S3, Azure Blob Storage o Google Cloud Storage.
 
-# Paso a Kubernetes: La lógica que tienes en docker-compose.yaml es un excelente punto de partida para tu próximo paso: desplegar MLflow en Kubernetes. La lógica sería la misma, pero usarías un manifiesto (.yaml) para un Deployment y un Service en lugar de docker-compose.yaml. Esto te permitiría escalar el servidor de MLflow a múltiples pods y garantizar su alta disponibilidad, integrándose con el clúster que ya has configurado.
+# Paso a Kubernetes: la lógica que tienes en docker-compose.yaml es un excelente punto de partida para tu próximo paso: desplegar MLflow en Kubernetes. La lógica sería la misma, pero usarías un manifiesto (.yaml) para un Deployment y un Service en lugar de docker-compose.yaml. Esto te permitiría escalar el servidor de MLflow a múltiples pods y garantizar su alta disponibilidad, integrándose con el clúster que ya has configurado.
 
